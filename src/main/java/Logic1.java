@@ -84,7 +84,13 @@ public class Logic1
 	old35(10) --> true
 	old35(15) --> false */
 	public boolean old35(int n) {
-	return (n % 3 == 0) != (n % 5 == 0);	
+		boolean isMultipleof3 == (n % 3 == 0);
+		boolean isMultipleof5 == (n % 5 == 0);
+// 
+		return( isMultipleof3 ^ isMultipleof5);
+		
+		
+		
 	
 	}
 
@@ -97,7 +103,10 @@ public class Logic1
 	specialEleven(23) --> true
 	specialEleven(24) --> false */
 	public boolean specialEleven(int n) {
-	return (n % 11) == 0 || (n % 11) == 1;
+	boolean isMultipleof11 == (n % 11 == 0);
+	boolean isnotMultipleof11 == n % 11 ==1);
+	
+	return( isMultipleof11 ^ isnotMultipleof11);
 	}
 
 
