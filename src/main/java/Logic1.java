@@ -84,6 +84,7 @@ public class Logic1
 	old35(10) --> true
 	old35(15) --> false */
 	public boolean old35(int n) {
+	return (n % 3 == 0) != (n % 5 == 0);	
 	
 	}
 
@@ -96,7 +97,7 @@ public class Logic1
 	specialEleven(23) --> true
 	specialEleven(24) --> false */
 	public boolean specialEleven(int n) {
-	  
+	return (n % 11) == 0 || (n % 11) == 1;
 	}
 
 
