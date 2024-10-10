@@ -116,7 +116,7 @@ public class Logic1
 	more20(21) --> true
 	more20(42) --> true */
 	public boolean more20(int n) {
-	  
+	  return (n % 20 == 1 || n % 20 == 2);
 	}
 
 
@@ -128,7 +128,7 @@ public class Logic1
 	less20(59) --> true
 	less20(20) --> false */
 	public boolean less20(int n) {
-	  
+	  return (n % 20 == 19 || n % 20 == 18);
 	}
 
 	/*Given a non-negative number "num", return true if num is within 2 of a multiple of 10. 
@@ -139,7 +139,8 @@ public class Logic1
 	nearTen(17) --> false
 	nearTen(19) --> true */
 	public boolean nearTen(int num) {
-	  
+	int remainder = num % 10;
+    	return (remainder <= 2 || remainder >= 8);
 	}
 
 
@@ -152,7 +153,11 @@ public class Logic1
 	sortaSum(9, 4) --> 20
 	sortaSum(10, 11) --> 21*/
 	public int sortaSum(int a, int b) {
-	  
+	  if (sum >= 10 && sum <= 19) {
+        return 20;
+    	} else {
+        return sum;
+    	}
 	}
 
 
@@ -165,7 +170,13 @@ public class Logic1
 	in1To10(11, false) --> false
 	in1To10(11, true) --> true */
 	public boolean in1To10(int n, boolean outsideMode) {
-	  
+	  if (outsideMode) {
+        // In outside mode, return true if less than or equal to 1 or greater than or equal to 10
+        return (n <= 1 || n >= 10);
+    } else {
+        // In normal mode, return true if in the range 1 to 10 (inclusive)
+        return (n >= 1 && n <= 10);
+    }
 	}
 
 
@@ -177,7 +188,11 @@ public class Logic1
 	teenSum(10, 13) --> 19
 	teenSum(13, 2) --> 19 */
 	public int teenSum(int a, int b) {
-	  
+	  if ((a >= 13 && a <= 19) || (b >= 13 && b <= 19)) {
+        return 19;
+    	} else {
+        return a + b; // Return the normal sum if neither are "teen"
+    }
 	}
 
 
@@ -190,7 +205,7 @@ public class Logic1
 	love6(4, 5) --> false
 	love6(1, 5) --> true */
 	public boolean love6(int a, int b) {
-	  
+	  return (a == 6 || b == 6 || (a + b == 6) || (Math.abs(a - b) == 6));
 	}
 
 
@@ -203,7 +218,13 @@ public class Logic1
 	lastDigit(23, 19, 12) --> false
 	lastDigit(23, 19, 3) --> true */
 	public boolean lastDigit(int a, int b, int c) {
-	  
+	  // Get the last digit of each integer
+    	int lastA = a % 10;
+    	int lastB = b % 10;
+    	int lastC = c % 10;
+
+    	// Check if any two last digits are the same
+    	return (lastA == lastB || lastA == lastC || lastB == lastC);
 	}
 
 
@@ -216,7 +237,16 @@ public class Logic1
 	answerCell(false, false, true) --> false
 	answerCell(true, false, false) --> false */
 	public boolean answerCell(boolean isMorning, boolean isMom, boolean isAsleep) {
-	  
+	  // If asleep, do not answer
+   	 if (isAsleep) {
+      	  return false;
+    	}
+    	// If it's morning, only answer if it's mom
+   	 if (isMorning) {
+       	 return isMom;
+   	 }
+    	// If it's not morning, answer the call
+   	 return true;
 	}
 
 	/*Given a day of the week encoded as 0=Sun, 1=Mon, 2=Tue, ...6=Sat, 
@@ -230,7 +260,21 @@ public class Logic1
 	alarmClock(5, false) --> "7:00"
 	alarmClock(0, false) --> "10:00" */
 	public String alarmClock(int day, boolean vacation) {
-	  
+	   if (vacation) {
+        // Weekend (0 = Sunday, 6 = Saturday)
+        if (day == 0 || day == 6) {
+            return "off"; // Weekend during vacation
+        } else {
+            return "10:00"; // Weekday during vacation
+        }
+    } else {
+        // Not on vacation
+        if (day == 0 || day == 6) {
+            return "10:00"; // Weekend not on vacation
+        } else {
+            return "7:00"; // Weekday not on vacation
+        }
+    }
 	}
 
 
@@ -245,7 +289,16 @@ public class Logic1
 	teaParty(3, 8) --> 0
 	teaParty(20, 6) --> 2 */
 	public int teaParty(int tea, int candy) {
-	  
+	  // Check if either tea or candy is less than 5
+    	if (tea < 5 || candy < 5) {
+      	   return 0; // Bad party
+   	 }
+   	 // Check if one is at least double the other
+    	if (tea >= 2 * candy || candy >= 2 * tea) {
+     	   return 2; // Great party
+   	 }
+    	// Both are at least 5, but neither is double the other
+    	   return 1; // Good party
 	}
 
 
@@ -260,7 +313,20 @@ public class Logic1
 	redTicket(2, 2, 1) --> 0
 	redTicket(0, 0, 0) --> 5 */
 	public int redTicket(int a, int b, int c) {
-	  
+	  // Check if all values are 2
+   	 if (a == 2 && b == 2 && c == 2) {
+    	    return 10; // Case 1
+   	 }
+   	 // Check if all values are the same
+   	 else if (a == b && b == c) {
+   	     return 5;  // Case 2
+   	 }
+   	 // Check if both b and c are different from a
+   	 else if (b != a && c != a) {
+   	     return 1;  // Case 3
+   	 }
+   	 // If none of the above cases match, we return 0
+   	     return 0; // Case 4
 	}
 
 
@@ -274,7 +340,16 @@ public class Logic1
 	greenTicket(2, 2, 2) --> 20
 	greenTicket(1, 1, 2) --> 10 */
 	public int greenTicket(int a, int b, int c) {
-	  
+	  // Check if all numbers are the same
+   	 if (a == b && b == c) {
+    	    return 20; // Case 2
+    	}
+   	 // Check if exactly two numbers are the same
+   	 else if (a == b || a == c || b == c) {
+     	   return 10; // Case 3
+  	  }
+   	 // If all numbers are different
+    	   return 0; // Case 1
 	}
 
 
@@ -290,7 +365,11 @@ public class Logic1
 	squirrelPlay(95, false) --> false
 	squirrelPlay(95, true) --> true	*/
 	public boolean squirrelPlay(int temp, boolean isSummer) {
-  
+  	if (isSummer) {
+        return temp >= 60 && temp <= 100; // Condition for summer
+   	 } else {
+        return temp >= 60 && temp <= 90; // Condition for non-summer
+  	  }
 	}
 
 
@@ -307,7 +386,18 @@ public class Logic1
 	caughtSpeeding(65, false) --> 1
 	caughtSpeeding(65, true) --> 0	*/
 	public int caughtSpeeding(int speed, boolean isBirthday) {
-	  
+	  if (isBirthday) {
+        speed -= 5; // driver's speed can be treated as 5 less
+    }
+
+   	 // Determine the ticket type based on the adjusted speed
+   	 if (speed <= 60) {
+    	    return 0; // no ticket
+   	 } else if (speed <= 80) {
+    	    return 1; // small ticket
+   	 } else {
+      	  return 2; // big ticket
+    }
 	}
 
 
@@ -324,7 +414,17 @@ public class Logic1
 	dateFashion(5, 2) --> 0
 	dateFashion(5, 5) --> 1	*/
 	public int dateFashion(int you, int date) {
-	  
+	  if (you >= 8 || date >= 8) {
+        return 2; // Yes
+    	}
+   	 // Check for the not stylish condition (2 or less)
+   	 else if (you <= 2 || date <= 2) {
+   	     return 0; // No
+   	 }
+   	 // If neither condition is met, it's maybe
+   	 else {
+     	   return 1; // Maybe
+    }
 	}
 	
 	
@@ -339,7 +439,21 @@ public class Logic1
 	fizzString2(3) --> "Fizz!"
 	fizzString2(15) --> "FizzBuzz!"*/
 	public String fizzString2(int n) {
-  
+  	if (n % 3 == 0 && n % 5 == 0) {
+     	   return "FizzBuzz!";
+   	 } 
+   	 // Check divisibility by 3
+   	 else if (n % 3 == 0) {
+     	   return "Fizz!";
+   	 } 
+   	 // Check divisibility by 5
+   	 else if (n % 5 == 0) {
+    	    return "Buzz!";
+   	 } 
+   	 // Not divisible by 3 or 5, return the number followed by "!"
+  	  else {
+    	    return n + "!";
+    }
 	}
 
 	/*When squirrels get together for a party, they like to have sodas. 
@@ -352,7 +466,13 @@ public class Logic1
 	sodaParty(50, false) --> true
 	sodaParty(70, true) --> true */
 	public boolean sodaParty(int sodas, boolean isWeekend) {
-  
+  	if (isWeekend) {
+   	     return true; // All numbers of sodas are okay on weekends
+   	 } 
+   	 // If it's not the weekend, check if the number of sodas is between 40 and 60
+   	 else {
+   	     return (sodas >= 40 && sodas <= 60); // Successful if sodas are between 40 and 60
+  	  }
 	}
 
 }
