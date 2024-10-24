@@ -121,12 +121,14 @@ public class Logic1 {
     }
 
     public boolean squirrelPlay(int temp, boolean isSummer) {
-        if (isSummer) {
-            return temp >= 60 && temp <= 100;
+        if (isWeekend) {
+            return cigars >= 40;  
         } else {
-            return temp >= 60 && temp <= 90;
-        }
+            return cigars >= 40 && cigars <= 60;  
     }
+
+}
+
 
     public int caughtSpeeding(int speed, boolean isBirthday) {
         if (isBirthday) {
@@ -170,17 +172,5 @@ public class Logic1 {
         return (sodas >= 40 && sodas <= 60);
     }
 
-    public static void main(String[] args) {
-        Logic1 logic1 = new Logic1();
-        
-        // Example usage of some methods
-        System.out.println("old35(3): " + logic1.old35(3)); // true
-        System.out.println("old35(5): " + logic1.old35(5)); // true
-        System.out.println("old35(15): " + logic1.old35(15)); // false
-
-        System.out.println("specialEleven(22): " + logic1.specialEleven(22)); // true
-        System.out.println("specialEleven(23): " + logic1.specialEleven(23)); // false
-
-        // Add more tests as needed
-    }
+    
 }
